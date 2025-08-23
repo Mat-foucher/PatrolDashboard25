@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 from io import StringIO
+from datetime import datetime
 
 def get_live_data():
 
@@ -17,7 +18,7 @@ def get_live_data():
     # sinnersdf = pd.read_fwf(StringIO(sinners_tablestring))
     bigroundupdf = pd.read_fwf(StringIO(bigroundup_tablestring))
 
-    current_year = pd.datetime.now().year
+    current_year = datetime.now().year
 
     b_cols = bigroundupdf.columns[0].split()
     b_cols2 = bigroundupdf.values.tolist()[0]
