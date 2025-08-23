@@ -17,7 +17,7 @@ def get_live_data():
     # sinnersdf = pd.read_fwf(StringIO(sinners_tablestring))
     bigroundupdf = pd.read_fwf(StringIO(bigroundup_tablestring))
 
-    current_year = datetime.now().year
+    current_year = pd.datetime.now().year
 
     b_cols = bigroundupdf.columns[0].split()
     b_cols2 = bigroundupdf.values.tolist()[0]
