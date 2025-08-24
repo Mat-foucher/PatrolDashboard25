@@ -1,9 +1,11 @@
 streamlit
 numpy
+time
 pandas
 matplotlib
 requests
 beautifulsoup4
 plotly
 datetime
+
 
