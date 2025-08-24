@@ -74,4 +74,5 @@ def get_live_data():
     brdf['BASE_TEMP'] = brdf['BASE_TEMP'].astype(int)
     brdf.sort_values('BASE_TEMP')
 
+    brdf.to_csv('data/latest.csv', index=False)
     return brdf 

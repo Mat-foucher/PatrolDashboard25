@@ -6,8 +6,6 @@ from utils import format_time_column, plot_base_graph
 def main():
     st.set_page_config(page_title="Snowbird Patrol Dashboard", layout="wide")
 
-    st.autorefresh(interval=600000, key="datarefresh")
-
     # Page UI:
     st.title("Snowbird Patrol Dashboard")
 
