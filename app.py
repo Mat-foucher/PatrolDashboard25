@@ -13,7 +13,7 @@ def main():
     st.title("Snowbird Patrol Dashboard")
 
     df = get_live_data()
-    #df = format_time_column(df)
+    df = format_time_column(df)
 
     st.markdown(f"**Last Updated:** {df['DATETIME'].max()}")
 
