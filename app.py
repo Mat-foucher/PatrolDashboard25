@@ -1,6 +1,5 @@
 # Dependencies:
 import streamlit as st
-import time
 from scraper import get_live_data
 from utils import format_time_column, plot_base_graph
 
