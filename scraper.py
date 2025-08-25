@@ -6,19 +6,56 @@ from datetime import datetime
 
 def get_live_data():
 
+    ################################################################
+    # SCRAPING LOGIC 
+    ################################################################
+
+    snowbird_sinners_url = "https://snowbirdskipatrol.com/Wx/SIN.HTM"
     snowbird_bigroundup_url = "https://snowbirdskipatrol.com/Wx/BIGROUNDUP.HTM"
+    response = requests.get(snowbird_sinners_url)
     response2 = requests.get(snowbird_bigroundup_url)
+    soup = BeautifulSoup(response.text, 'html.parser')
     soup2 = BeautifulSoup(response2.text, 'html.parser')
     #print(str(soup).split('<pre>')[1].split('</pre>')[0],str(soup2).split('<pre>')[1].split('</pre>')[0])
 
     # Table String Lengths:
-    #sinners_tablestring = str(soup).split('<pre>')[1].split('</pre>')[0]
+    sinners_tablestring = str(soup).split('<pre>')[1].split('</pre>')[0]
     bigroundup_tablestring = str(soup2).split('<pre>')[1].split('</pre>')[0]
 
-    # sinnersdf = pd.read_fwf(StringIO(sinners_tablestring))
+    sinnersdf = pd.read_fwf(StringIO(sinners_tablestring))
     bigroundupdf = pd.read_fwf(StringIO(bigroundup_tablestring))
 
     current_year = datetime.now().year
+
+    #############################################
+    # SINNERS
+    #############################################
+
+    # Split the dataframe:
+
+
+    s_cols = sinnersdf.columns[0].split()
+    print(s_cols)
+
+    # New Dataframe for Sinners that has cleaned columns:
+    sdf = pd.DataFrame(columns=s_cols)
+
+    # Assign the rows of sinnersdf to sdf by splitting by spaces into new columns:
+    for i in range(len(sinnersdf)):
+        if i > 1:
+            splitrow = str(sinnersdf.iloc[i]).split()
+            #print(splitrow[6:13])
+            #values = splitrow[6:13]
+            date = str(current_year) + '-' + splitrow[6] + '-' + splitrow[7]
+            #print(date)
+            splitrow[7] = date
+            sdf.loc[i] = splitrow[7:13]
+        sdf.reset_index(drop=True,inplace=True)
+    #sdf.head(100)
+
+    #############################################
+    # BIGROUNDUP
+    #############################################
 
     b_cols = bigroundupdf.columns[0].split()
     b_cols2 = bigroundupdf.values.tolist()[0]
@@ -66,6 +103,12 @@ def get_live_data():
     brdf.reset_index(drop=True,inplace=True)
 
     # Datetime conversions
+
+    # Sinners: 
+    
+
+    # Bigroundup: 
+
     brdf['TIME'] = brdf['TIME'].astype(str).str.zfill(4)
     #brdf['TIME'] = pd.to_datetime(brdf['TIME'],format='%H:%M').dt.time 
     brdf.sort_values('TIME')
