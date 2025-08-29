@@ -23,8 +23,35 @@ def plot_base_graph(df):
         marker=dict(size=4)
     ))
 
+    fig.add_trace(go.Scatter(
+        x=df['DATETIME'],
+        y=df['SINN_TEMP'],
+        mode='lines+markers',
+        name='Base Temp',
+        line=dict(color='red'),
+        marker=dict(size=4)
+    ))
+
+    fig.add_trace(go.Scatter(
+        x=df['DATETIME'],
+        y=df['GAD2_TEMP'],
+        mode='lines+markers',
+        name='Base Temp',
+        line=dict(color='green'),
+        marker=dict(size=4)
+    ))
+
+    fig.add_trace(go.Scatter(
+        x=df['DATETIME'],
+        y=df['PEAK_TEMP'],
+        mode='lines+markers',
+        name='Base Temp',
+        line=dict(color='cyan'),
+        marker=dict(size=4)
+    ))
+
     fig.update_layout(
-        title="Base Temp (F) Two Day Report",
+        title="Station Temp (F) Two Day Report",
         xaxis_title="Datetime",
         yaxis_title="Temperature (F)",
         template='plotly_dark',

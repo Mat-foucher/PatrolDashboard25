@@ -87,6 +87,7 @@ def get_live_data():
             else:
                 b_cols2[i] = b_cols[10] + "_" + b_cols2[i]
 
+    print(b_cols2, len(b_cols2))
 
     # Asssign the new column set to brdf:
     brdf = pd.DataFrame(columns=b_cols2)
@@ -97,8 +98,8 @@ def get_live_data():
         #values = splitrow[12:13]
         date = str(current_year) + '-' + splitrow[0] + '-' + splitrow[1]
         splitrow[1] = date
-        #print(splitrow, len(splitrow))
-
+        print(splitrow[1:], len(splitrow[1:]))
+        
         brdf.loc[i] = splitrow[1:]
     brdf.reset_index(drop=True,inplace=True)
 
