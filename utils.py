@@ -27,7 +27,7 @@ def plot_base_graph(df):
         x=df['DATETIME'],
         y=df['SINN_TEMP'],
         mode='lines+markers',
-        name='Base Temp',
+        name='Sinners Temp',
         line=dict(color='red'),
         marker=dict(size=4)
     ))
@@ -36,7 +36,7 @@ def plot_base_graph(df):
         x=df['DATETIME'],
         y=df['GAD2_TEMP'],
         mode='lines+markers',
-        name='Base Temp',
+        name='Gad Temp',
         line=dict(color='green'),
         marker=dict(size=4)
     ))
@@ -45,7 +45,7 @@ def plot_base_graph(df):
         x=df['DATETIME'],
         y=df['PEAK_TEMP'],
         mode='lines+markers',
-        name='Base Temp',
+        name='Peak Temp',
         line=dict(color='cyan'),
         marker=dict(size=4)
     ))
@@ -54,7 +54,7 @@ def plot_base_graph(df):
         x=df['DATETIME'],
         y=df['REDSTACK_TEMP'],
         mode='lines+markers',
-        name='Base Temp',
+        name='Redstack Temp',
         line=dict(color='purple'),
         marker=dict(size=4)
     ))
