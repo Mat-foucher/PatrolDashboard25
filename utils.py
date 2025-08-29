@@ -50,6 +50,15 @@ def plot_base_graph(df):
         marker=dict(size=4)
     ))
 
+    fig.add_trace(go.Scatter(
+        x=df['DATETIME'],
+        y=df['REDSTACK_TEMP'],
+        mode='lines+markers',
+        name='Base Temp',
+        line=dict(color='purple'),
+        marker=dict(size=4)
+    ))
+
     fig.update_layout(
         title="Station Temp (F) Two Day Report",
         xaxis_title="Datetime",
