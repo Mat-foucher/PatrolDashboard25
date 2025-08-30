@@ -104,6 +104,7 @@ def plot_base_graph(df):
         hovermode='x unified'
     )
 
+    # put the legend for temp history under that chart:
     fig.update_layout(
         legend=dict(
             orientation="h",
