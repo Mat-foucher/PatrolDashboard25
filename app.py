@@ -14,9 +14,10 @@ def main():
 
     
 
-    # graph plots:
-    c = st.container()
+    # layout - make sure each element is declared in the order you want them to be on the dashboard!!!:
     col1, col2 = st.columns(2)
+    c = st.container()
+    
 
     with col1:
         st.title("Snowbird Patrol Dashboard")
