@@ -8,6 +8,43 @@ def format_time_column(df):
     df = df.sort_values('DATETIME')
     return df 
 
+def plot_rose_graph(df):
+    peak_wind_df = pd.DataFrame()
+
+    peak_wind_df['PEAK_WIND'] = df['PEAK_WIND'].astype(int)
+
+    peak_wind_df['PEAK_WIND_DIR'] = df['PEAK_WIND_DIR']
+
+    peak_wind_df['PEAK_GUST'] = df['PEAK_GUST']
+
+
+    #max_wind = max(peak_wind_df['PEAK_WIND'])
+
+    wind_directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW']
+
+    # Ensure Peak wind dir is categorical:
+
+    peak_wind_df['PEAK_WIND_DIR'] = pd.Categorical(
+        peak_wind_df['PEAK_WIND_DIR'],
+        categories=wind_directions,
+        ordered=True
+    )
+
+    wind_summary = peak_wind_df.groupby('PEAK_WIND_DIR')['PEAK_WIND'].mean().reindex(wind_directions)
+
+    fig = px.bar_polar(
+        r = wind_summary.values,
+        theta= wind_summary.index,
+        color= wind_summary.values,
+        color_discrete_sequence= px.colors.sequential.Plasma_r,
+        title="Peak Station Avg Wind (mph)"
+    )
+
+    fig.update_traces(marker_line_color="black", marker_line_width=1)
+    fig.update_layout(template='plotly_dark')
+    st.plotly_chart(fig, use_container_width=True)
+
+
 def plot_base_graph(df):
     #fig = px.line(df, x="DATETIME", y="BASE_TEMP", markers=True)
 
