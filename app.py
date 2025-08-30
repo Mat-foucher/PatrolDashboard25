@@ -13,6 +13,8 @@ def main():
     df = format_time_column(df)
 
     st.markdown(f"**Last Updated:** {df['DATETIME'].max()}")
+    
+    # graph plots:
     plot_rose_graph(df)
     plot_base_graph(df)
 

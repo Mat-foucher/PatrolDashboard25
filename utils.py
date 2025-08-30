@@ -42,7 +42,7 @@ def plot_rose_graph(df):
 
     fig.update_traces(marker_line_color="black", marker_line_width=1)
     fig.update_layout(template='plotly_dark')
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig)
 
 
 def plot_base_graph(df):
