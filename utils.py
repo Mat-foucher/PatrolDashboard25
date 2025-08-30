@@ -96,10 +96,6 @@ def plot_base_graph(df):
         marker=dict(size=4)
     ))
 
-    # fig.add(go.bar_polar(df, r="frequency", theta="direction",
-    #                color="strength", template="plotly_dark",
-    #                color_discrete_sequence= px.colors.sequential.Plasma_r))
-
     fig.update_layout(
         title="Station Temp (F) Two Day Report",
         xaxis_title="Datetime",
@@ -107,6 +103,17 @@ def plot_base_graph(df):
         template='plotly_dark',
         hovermode='x unified'
     )
+
+    fig.update_layout(
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=-0.3,
+            xanchor="center",
+            x=0.5
+        )
+    )
+
 
     st.plotly_chart(fig, use_container_width=True)
 
