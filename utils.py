@@ -59,9 +59,9 @@ def plot_base_graph(df):
         marker=dict(size=4)
     ))
 
-    fig.add(px.bar_polar(df, r="frequency", theta="direction",
-                   color="strength", template="plotly_dark",
-                   color_discrete_sequence= px.colors.sequential.Plasma_r))
+    # fig.add(go.bar_polar(df, r="frequency", theta="direction",
+    #                color="strength", template="plotly_dark",
+    #                color_discrete_sequence= px.colors.sequential.Plasma_r))
 
     fig.update_layout(
         title="Station Temp (F) Two Day Report",
@@ -72,3 +72,4 @@ def plot_base_graph(df):
     )
 
     st.plotly_chart(fig, use_container_width=True)
+
