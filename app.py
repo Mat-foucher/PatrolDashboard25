@@ -26,11 +26,11 @@ def main():
     with col2:
         plot_rose_graph(df)
 
-    # Selection Button:
-    option = st.selectbox(
-        "Choose Weather Station:",
-        ("PEAK", "REDSTACK")
-    )
+        # Selection Button:
+        option = st.selectbox(
+            "Choose Weather Station:",
+            ("PEAK", "REDSTACK")
+        )
 
     with c:
         plot_base_graph(df)
