@@ -33,19 +33,21 @@ def plot_rose_graph(df, option):
 
     wind_summary = peak_wind_df.groupby(option + '_WIND_DIR')[option + '_WIND'].mean().reindex(wind_directions)
 
+    windmask = df[df['DATETIME'] == df['DATETIME'].max()]
+
     fig = px.bar_polar(
         r = wind_summary.values,
         theta= wind_summary.index,
         color= wind_summary.values,
         color_discrete_sequence= px.colors.sequential.Plasma_r,
-        title= option + " Avg Wind (mph)"
+        title= option + " Avg Wind (mph)",
+        subtitle= f"Most Recent: {windmask[option + '_WIND_DIR'].iloc[0]}" + " at " + f"{windmask[option + '_WIND'].iloc[0]}" + " mph"
     )
 
     fig.update_traces(marker_line_color="black", marker_line_width=1)
     fig.update_layout(template='plotly_dark')
     st.plotly_chart(fig)
-    windmask = df[df['DATETIME'] == df['DATETIME'].max()]
-    st.markdown(f"**Most Recent:** {windmask[option + '_WIND_DIR'].iloc[0]}" + " at " + f"{windmask[option + '_WIND'].iloc[0]}" + " mph")
+    
 
 
 def plot_base_graph(df):
