@@ -43,7 +43,9 @@ def plot_rose_graph(df, option):
 
     fig.update_traces(marker_line_color="black", marker_line_width=1)
     fig.update_layout(template='plotly_dark')
-    st.plotly_chart(fig )
+    st.plotly_chart(fig)
+    windmask = df[df['DATETIME'] == df['DATETIME'].max()]
+    st.markdown(f"**Most Recent:** {windmask[option + '_WIND_DIR']} at {windmask[option + '_WIND']} mph")
 
 
 def plot_base_graph(df):
