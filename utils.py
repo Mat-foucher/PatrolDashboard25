@@ -44,7 +44,7 @@ def plot_rose_graph(df):
         theta= wind_summary.index,
         color= wind_summary.values,
         color_discrete_sequence= px.colors.sequential.Plasma_r,
-        title="Peak Station Avg Wind (mph)"
+        title= option + " Avg Wind (mph)"
     )
 
     fig.update_traces(marker_line_color="black", marker_line_width=1)
