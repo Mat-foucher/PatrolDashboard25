@@ -2,6 +2,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
 import streamlit as st 
+from gyro_component import gyro_heading
 
 def format_time_column(df):
     #df['DATETIME'] = pd.to_datetime(df['DATETIME'], format="%H%M")

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+            <script>
+                async function startOrientationListener() {
+                if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+                    const permission = await DeviceOrientationEvent.requestPermission();
+                    if (permission !== 'granted') return;
+                }
+
+                window.addEventListener("deviceorientation", (event) => {
+                    const heading = event.alpha;
+                    const message = {
+                    isStreamlitMessage: true,
+                    type: "heading_update",
+                    heading: heading
+                    };
+                    window.parent.postMessage(message, "*");
+                });
+                }
+                window.onload = startOrientationListener;
+            </script>
+        </head>
+    <body>
+        <h4 style="font-family: sans-serif;">Gyroscope Active</h4>
+    </body>
+</html>
