@@ -9,13 +9,20 @@ def format_time_column(df):
     return df 
 
 def plot_rose_graph(df):
+
+    # Selection Button:
+    option = st.selectbox(
+        "Choose Weather Station:",
+        ("PEAK", "REDSTACK")
+    )
+
     peak_wind_df = pd.DataFrame()
 
-    peak_wind_df['PEAK_WIND'] = df['PEAK_WIND'].astype(int)
+    peak_wind_df[option + '_WIND'] = df[option + '_WIND'].astype(int)
 
-    peak_wind_df['PEAK_WIND_DIR'] = df['PEAK_WIND_DIR']
+    peak_wind_df[option + '_WIND_DIR'] = df[option + '_WIND_DIR']
 
-    peak_wind_df['PEAK_GUST'] = df['PEAK_GUST']
+    peak_wind_df[option + '_GUST'] = df[option + '_GUST']
 
 
     #max_wind = max(peak_wind_df['PEAK_WIND'])
@@ -24,13 +31,13 @@ def plot_rose_graph(df):
 
     # Ensure Peak wind dir is categorical:
 
-    peak_wind_df['PEAK_WIND_DIR'] = pd.Categorical(
-        peak_wind_df['PEAK_WIND_DIR'],
+    peak_wind_df[option + '_WIND_DIR'] = pd.Categorical(
+        peak_wind_df[option + '_WIND_DIR'],
         categories=wind_directions,
         ordered=True
     )
 
-    wind_summary = peak_wind_df.groupby('PEAK_WIND_DIR')['PEAK_WIND'].mean().reindex(wind_directions)
+    wind_summary = peak_wind_df.groupby(option + '_WIND_DIR')[option + '_WIND'].mean().reindex(wind_directions)
 
     fig = px.bar_polar(
         r = wind_summary.values,
