@@ -8,13 +8,7 @@ def format_time_column(df):
     df = df.sort_values('DATETIME')
     return df 
 
-def plot_rose_graph(df):
-
-    # Selection Button:
-    option = st.selectbox(
-        "Choose Weather Station:",
-        ("PEAK", "REDSTACK")
-    )
+def plot_rose_graph(df, option="PEAK"):
 
     peak_wind_df = pd.DataFrame()
 
