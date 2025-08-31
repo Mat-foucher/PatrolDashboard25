@@ -24,13 +24,13 @@ def main():
         st.markdown(f"**Last Updated:** {df['DATETIME'].max()}")
 
     with col2:
-        plot_rose_graph(df)
-
         # Selection Button:
         option = st.selectbox(
             "Choose Weather Station:",
             ("PEAK", "REDSTACK")
         )
+        plot_rose_graph(df,option)
+
 
     with c:
         plot_base_graph(df)
