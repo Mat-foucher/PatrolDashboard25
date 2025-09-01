@@ -56,7 +56,7 @@ def plot_rose_graph(df, option, heading=0):
         ),
         showlegend=False,
         title= option + " Avg Wind (mph)",
-        subtitle= f"Most Recent: {windmask[option + '_WIND_DIR'].iloc[0]}" + " at " + f"{windmask[option + '_WIND'].iloc[0]}" + " mph"
+        #subtitle= f"Most Recent: {windmask[option + '_WIND_DIR'].iloc[0]}" + " at " + f"{windmask[option + '_WIND'].iloc[0]}" + " mph"
     )
     # fig = px.bar_polar(
     #     r = wind_summary.values,
