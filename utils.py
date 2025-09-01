@@ -52,7 +52,7 @@ def plot_rose_graph(df, option, heading=0):
 
     fig.update_layout(
         polar=dict(
-            anuglaraxis=dict(rotation=gyro_rotation)
+            angularaxis=dict(rotation=gyro_rotation)
         ),
         showlegend=False,
         title= option + " Avg Wind (mph)",
