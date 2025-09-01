@@ -38,11 +38,11 @@ def plot_rose_graph(df, option, heading=0):
 
     fig = go.Figure()
 
-    fig.add_trace(go.Scatterpolar(
+    fig.add_trace(go.Barpolar(
         r = wind_summary.values,
         theta= wind_summary.index,
         # color= wind_summary.values,
-        mode='markers+lines',
+        # mode='markers+lines',
         # color_discrete_sequence= px.colors.sequential.Plasma_r
         # fillcolor=px.colors.sequential.Plasma_r
         
