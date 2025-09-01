@@ -44,7 +44,7 @@ def plot_rose_graph(df, option, heading=0):
         # color= wind_summary.values,
         mode='markers+lines',
         # color_discrete_sequence= px.colors.sequential.Plasma_r
-        fillcolor=px.colors.sequential.Plasma_r
+        # fillcolor=px.colors.sequential.Plasma_r
         
     ))
 
@@ -67,7 +67,7 @@ def plot_rose_graph(df, option, heading=0):
     #     subtitle= f"Most Recent: {windmask[option + '_WIND_DIR'].iloc[0]}" + " at " + f"{windmask[option + '_WIND'].iloc[0]}" + " mph"
     # )
 
-    fig.update_traces(marker_line_color="black", marker_line_width=1)
+    #fig.update_traces(marker_line_color="black", marker_line_width=1)
     fig.update_layout(template='plotly_dark')
     st.plotly_chart(fig)
     
