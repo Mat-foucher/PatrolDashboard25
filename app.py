@@ -23,7 +23,7 @@ def main(option='PEAK'):
     
     with g:
         with col1:
-            st.title("Snowbird Patrol Dashboard")
+            st.title("Snowbird Patrol Dashboard (UNOFFICIAL)")
             st.markdown(f"**Last Updated:** {df['DATETIME'].max()}")
 
             c1,c2,c3,c4,c5 = st.columns(5)
