@@ -26,6 +26,19 @@ def main(option='PEAK'):
             st.title("Snowbird Patrol Dashboard")
             st.markdown(f"**Last Updated:** {df['DATETIME'].max()}")
 
+            c1,c2,c3,c4,c5 = st.columns(5)
+
+            with c1:
+                st.metric("Base Temp",df['BASE_TEMP'])
+            with c2:
+                st.metric("Sinners Temp",df['SINN_TEMP'])
+            with c3:
+                st.metric("Peak Temp",df['PEAK_TEMP'])
+            with c4:
+                st.metric("Gad Temp",df['GAD2_TEMP'])
+            with c5:
+                st.metric("Redstack Temp:", df['REDSTACK_TEMP'])
+
         with col2:
             # Selection Button:
             option = st.selectbox(
