@@ -14,30 +14,31 @@ def main(option='PEAK'):
     df = get_live_data()
     df = format_time_column(df)
 
+    # For the elements to be less sparse:
+    g = st.container()
     
-
     # layout - make sure each element is declared in the order you want them to be on the dashboard!!!:
     col1, col2 = st.columns(2)
     c = st.container()
     
+    with g:
+        with col1:
+            st.title("Snowbird Patrol Dashboard")
+            st.markdown(f"**Last Updated:** {df['DATETIME'].max()}")
 
-    with col1:
-        st.title("Snowbird Patrol Dashboard")
-        st.markdown(f"**Last Updated:** {df['DATETIME'].max()}")
-
-    with col2:
-        # Selection Button:
-        option = st.selectbox(
-            "Choose Weather Station:",
-            ("PEAK", "REDSTACK")
-        )
-        plot_rose_graph(df,option)
+        with col2:
+            # Selection Button:
+            option = st.selectbox(
+                "Choose Weather Station:",
+                ("PEAK", "REDSTACK")
+            )
+            plot_rose_graph(df,option)
 
         
 
 
-    with c:
-        plot_base_graph(df)
+        with c:
+            plot_base_graph(df)
 
 if __name__ == '__main__':
     main()
