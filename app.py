@@ -17,7 +17,7 @@ def main(option='PEAK'):
 
     stored_password = os.environ.get('PASSWORD')
 
-    pass_input = st.sidebar.text_input("Enter Password:", type="password")
+    pass_input = st.text_input("Enter Password:", type="password")
 
     if pass_input == stored_password and pass_input != "":
         
