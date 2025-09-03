@@ -16,7 +16,7 @@ def main(option='PEAK'):
     if pass_input == stored_password:
         
 
-        st.set_page_config(page_title="Snowbird Patrol Dashboard", layout="wide")
+        st.set_page_config(page_title="Snowbird Patrol Dashboard")
 
         # Call the gyro detection:
         gyro_heading()
