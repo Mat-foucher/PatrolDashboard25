@@ -17,11 +17,20 @@ def main(option='PEAK'):
 
     stored_password = os.environ.get('PASSWORD')
 
-    if "pass_input" not in st.session_state:
-        pass_input = st.text_input("Enter Password:", type="password")
+    if "authenticated" not in st.session_state:
+        st.session_state.authenticated = False 
+    
+   
 
-    if pass_input == stored_password:
-        
+    if not st.session_state.authenticated:
+        pass_input = st.text_input("Enter Password:", type="password")
+        if st.button("Submit"):
+            st.success("Access Granted")
+            st.session_state.authenticated = True
+        else:
+            st.error("Incorrect Password")
+
+    if st.session_state.authenticated:
 
         st.set_page_config(page_title="Snowbird Patrol Dashboard")
 
@@ -65,7 +74,7 @@ def main(option='PEAK'):
 
             with c:
                 plot_base_graph(df)
-    
+
 
 
 if __name__ == '__main__':
