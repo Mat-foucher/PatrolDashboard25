@@ -5,7 +5,7 @@ from utils import format_time_column, plot_base_graph, plot_rose_graph
 from gyro_component import gyro_heading
 import os
 
-st.session_state.authenticated = False 
+
 def main(option='PEAK'):
     # Call the gyro detection:
     gyro_heading()
@@ -15,12 +15,12 @@ def main(option='PEAK'):
     df = format_time_column(df)
 
     # Password Protection:
+    if "authenticated" not in st.session_state:
+        st.session_state.authenticated = False 
 
     stored_password = os.environ.get('PASSWORD')
 
     
-    
-   
 
     if not st.session_state.authenticated:
         
@@ -34,6 +34,7 @@ def main(option='PEAK'):
                     st.session_state.authenticated = True
                 else:
                     st.error("Incorrect Password")
+        st.stop()
 
     if st.session_state.authenticated:
 
