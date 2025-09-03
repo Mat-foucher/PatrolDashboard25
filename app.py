@@ -18,8 +18,8 @@ def main(option='PEAK'):
     stored_password = os.environ.get('PASSWORD')
 
     pass_input = st.text_input("Enter Password:", type="password")
-    if pass_input == stored_password:
-        while pass_input == stored_password:
+    while pass_input != stored_password:
+        if pass_input == stored_password:
             
 
             st.set_page_config(page_title="Snowbird Patrol Dashboard")
@@ -64,9 +64,9 @@ def main(option='PEAK'):
 
                 with c:
                     plot_base_graph(df)
-    else:
-        st.error("Incorrect Password")
-        st.warning("Please enter the correct password")
+        elif pass_input != "":
+            st.error("Incorrect Password")
+            st.warning("Please enter the correct password")
 
 
 if __name__ == '__main__':
