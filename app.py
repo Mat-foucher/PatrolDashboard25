@@ -6,6 +6,12 @@ from gyro_component import gyro_heading
 import os
 
 def main(option='PEAK'):
+    # Call the gyro detection:
+    gyro_heading()
+
+    # Page UI:
+    df = get_live_data()
+    df = format_time_column(df)
 
     # Password Protection:
 
@@ -13,17 +19,12 @@ def main(option='PEAK'):
 
     pass_input = st.sidebar.text_input("Enter Password:", type="password")
 
-    if pass_input == stored_password:
+    if pass_input == stored_password and pass_input != "":
         
 
         st.set_page_config(page_title="Snowbird Patrol Dashboard")
 
-        # Call the gyro detection:
-        gyro_heading()
-
-        # Page UI:
-        df = get_live_data()
-        df = format_time_column(df)
+        
 
         # For the elements to be less sparse:
         g = st.container()
