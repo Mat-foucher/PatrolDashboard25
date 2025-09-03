@@ -25,10 +25,11 @@ def main(option='PEAK'):
     if not st.session_state.authenticated:
         pass_input = st.text_input("Enter Password:", type="password")
         if st.button("Submit"):
-            st.success("Access Granted")
-            st.session_state.authenticated = True
-        else:
-            st.error("Incorrect Password")
+            if pass_input == stored_password:
+                st.success("Access Granted")
+                st.session_state.authenticated = True
+            else:
+                st.error("Incorrect Password")
 
     if st.session_state.authenticated:
 
