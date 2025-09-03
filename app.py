@@ -64,7 +64,7 @@ def main(option='PEAK'):
 
                 with c:
                     plot_base_graph(df)
-        elif pass_input != "":
+        elif len(pass_input) > 0:
             st.error("Incorrect Password")
             st.warning("Please enter the correct password")
 
