@@ -26,11 +26,14 @@ def main(option='PEAK'):
         
         with st.form("Login Form"):
             pass_input = st.text_input("Enter Password:", type="password")
-            if pass_input == stored_password:
-                st.success("Access Granted")
-                st.session_state.authenticated = True
-            else:
-                st.error("Incorrect Password")
+            submitted = st.form_submit_button('Submit')
+
+            if submitted:
+                if pass_input == stored_password:
+                    st.success("Access Granted")
+                    st.session_state.authenticated = True
+                else:
+                    st.error("Incorrect Password")
 
     if st.session_state.authenticated:
 
