@@ -17,8 +17,8 @@ def main(option='PEAK'):
 
     stored_password = os.environ.get('PASSWORD')
 
-    if "authenticated" not in st.session_state:
-        st.session_state.authenticated = False 
+    # if "authenticated" not in st.session_state:
+    #     st.session_state.authenticated = False 
     
    
 
