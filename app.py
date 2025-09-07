@@ -53,7 +53,7 @@ def main(option='PEAK'):
         with col1:
             st.title("Snowbird Patrol Dashboard (UNOFFICIAL)")
             st.markdown(f"**Last Updated:** {df['DATETIME'].max()}")
-            col11, col12 = st.columns([1,1])
+            col11, col12 = st.columns([0.5,0.5])
             with col11:
                 plot_indi1(df,'PEAK')
             
