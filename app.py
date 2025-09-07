@@ -54,14 +54,14 @@ def main(option='PEAK'):
         with col1:
             st.title("Snowbird Patrol Dashboard (UNOFFICIAL)")
             st.markdown(f"**Last Updated:** {df['DATETIME'].max()}")
-            col11, col12 = st.columns([0.5,0.5])
-            with col11:
-                # Side by side gauges:
-                fig = make_subplots(rows = 1, cols = 2, specs=[[{'type': 'indicator'},{'type':'indicator'}]])
-                fig.add_trace(plot_indi1(df,'PEAK').data[0],row=1,col=1)
-                fig.add_trace(plot_indi1(df,'REDSTACK').data[0],row=1,col=2)
-                fig.update_layout(template='plotly_dark', height=300)
-                st.plotly_chart(fig)
+            
+            
+            # Side by side gauges:
+            fig = make_subplots(rows = 1, cols = 2, specs=[[{'type': 'indicator'},{'type':'indicator'}]])
+            fig.add_trace(plot_indi1(df,'PEAK').data[0],row=1,col=1)
+            fig.add_trace(plot_indi1(df,'REDSTACK').data[0],row=1,col=2)
+            fig.update_layout(template='plotly_dark', height=300)
+            st.plotly_chart(fig)
         with col2:
             # Selection Button:
             option = st.selectbox(
