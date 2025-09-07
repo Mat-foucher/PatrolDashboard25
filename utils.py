@@ -25,7 +25,8 @@ def plot_indi1(df,option):
             delta = {'reference': df[option + '_WIND'].mean()},
             value = int(windmask[option + '_WIND'].iloc[0]),
             title = {'text': option + " Wind Speed (mph)", 'font':{'size':15}},
-            domain = {'x': [0, 1], 'y': [0, 1]}
+            domain = {'x': [0, 1], 'y': [0, 1]},
+            gauge = {'axis': { 'range':[None, df[option + '_WIND'].max()]}}
             
         ))
 
