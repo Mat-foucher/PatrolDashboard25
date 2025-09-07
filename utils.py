@@ -15,22 +15,21 @@ def plot_indi1(df,option):
     fig = go.Figure()
 
     try:
-        windmask = df['DATETIME'] == df['DATETIME'].max()
+        windmask = df[df['DATETIME'] == df['DATETIME'].max()]
         df['PEAK_WIND'] = df['PEAK_WIND'].astype(int)
 
         
 
         fig = go.Figure(go.Indicator(
             mode = "gauge+number+delta",
-            delta = {'reference': df[option+'_WIND'].mean()},
+            delta = {'reference': df[option + '_WIND'].mean()},
             value = int(windmask[option + '_WIND'].iloc[0]),
             title = {'text': "Wind Speed (mph)"},
             domain = {'x': [0, 1], 'y': [0, 1]}
             
         ))
 
-        fig.update_layout(
-            template='plotly_dark')
+        fig.update_layout(template='plotly_dark')
 
         st.plotly_chart(fig)
     except:
