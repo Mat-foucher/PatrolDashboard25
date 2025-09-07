@@ -54,18 +54,8 @@ def main(option='PEAK'):
             st.title("Snowbird Patrol Dashboard (UNOFFICIAL)")
             st.markdown(f"**Last Updated:** {df['DATETIME'].max()}")
             plot_indi1(df,'PEAK')
-            # c1,c2,c3,c4,c5 = st.columns(5)
-
-            # with c1:
-            #     st.metric("Base Temp",df['BASE_TEMP'].iloc[len(df['BASE_TEMP']-1)])
-            # with c2:
-            #     st.metric("Sinners Temp",df['SINN_TEMP'].iloc[len(df['SINN_TEMP']-1)])
-            # with c3:
-            #     st.metric("Peak Temp",df['PEAK_TEMP'].iloc[len(df['PEAK_TEMP']-1)])
-            # with c4:
-            #     st.metric("Gad Temp",df['GAD2_TEMP'].iloc[len(df['GAD2_TEMP']-1)])
-            # with c5:
-            #     st.metric("Redstack Temp:", df['REDSTACK_TEMP'].iloc[len(df['REDSTACK_TEMP']-1)])
+            plot_indi1(df,'REDSTACK')
+            
 
         with col2:
             # Selection Button:

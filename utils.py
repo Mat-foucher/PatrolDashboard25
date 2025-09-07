@@ -16,7 +16,7 @@ def plot_indi1(df,option):
 
     try:
         windmask = df[df['DATETIME'] == df['DATETIME'].max()]
-        df['PEAK_WIND'] = df['PEAK_WIND'].astype(int)
+        df[option+'_WIND'] = df[option+'_WIND'].astype(int)
 
         
 
@@ -24,17 +24,16 @@ def plot_indi1(df,option):
             mode = "gauge+number+delta",
             delta = {'reference': df[option + '_WIND'].mean()},
             value = int(windmask[option + '_WIND'].iloc[0]),
-            title = {'text': "Wind Speed (mph)"},
+            title = {'text': option + " Wind Speed (mph)"},
             domain = {'x': [0, 1], 'y': [0, 1]}
             
         ))
 
-        fig.update_layout(template='plotly_dark')
+        fig.update_layout(template='plotly_dark', height=100)
 
         st.plotly_chart(fig)
     except:
         st.error('Could not find weather station data - check BIGROUNDUP')
-
 
 
 
