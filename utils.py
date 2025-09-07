@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
@@ -61,14 +62,17 @@ def plot_rose_graph(df, option, heading=0):
     fig = px.bar_polar(
         r = wind_summary.values,
         theta= wind_summary.index,
-        color= wind_summary.values,
+        color= np.round(wind_summary.values,2),
         color_discrete_sequence= px.colors.sequential.Plasma_r,
         title= option + " Avg Wind (mph)",
         subtitle= f"Most Recent: {windmask[option + '_WIND_DIR'].iloc[0]}" + " at " + f"{windmask[option + '_WIND'].iloc[0]}" + " mph"
     )
 
     #fig.update_traces(marker_line_color="black", marker_line_width=1)
-    fig.update_layout(template='plotly_dark')
+    fig.update_layout(
+        template='plotly_dark',
+        coloraxis_colorbar=dict(title="Wind speed (mph)")
+    )
     st.plotly_chart(fig)
     
 
