@@ -71,8 +71,8 @@ def plot_rose_graph(df, option, heading=0):
     #fig.update_traces(marker_line_color="black", marker_line_width=1)
     fig.update_layout(
         template='plotly_dark',
-        showlegend=False,
-        coloraxis_colorbar=dict(title="Wind speed (mph)")
+        coloraxis_colorbar=dict(title=None),
+        coloraxis_showscale=False
     )
     st.plotly_chart(fig)
     
