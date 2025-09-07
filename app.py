@@ -38,7 +38,7 @@ def main(option='PEAK'):
 
     # if st.session_state.authenticated:
 
-    st.set_page_config(page_title="Snowbird Patrol Dashboard")
+    st.set_page_config(page_title="Snowbird Patrol Dashboard",layout="wide")
 
     
 
