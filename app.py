@@ -1,7 +1,7 @@
 # Dependencies:
 import streamlit as st
 from scraper import get_live_data
-from utils import format_time_column, plot_base_graph, plot_rose_graph
+from utils import format_time_column, plot_base_graph, plot_rose_graph, plot_indi1
 from gyro_component import gyro_heading
 import os
 
@@ -53,7 +53,7 @@ def main(option='PEAK'):
         with col1:
             st.title("Snowbird Patrol Dashboard (UNOFFICIAL)")
             st.markdown(f"**Last Updated:** {df['DATETIME'].max()}")
-
+            plot_indi1(df,'PEAK')
             # c1,c2,c3,c4,c5 = st.columns(5)
 
             # with c1:
@@ -74,7 +74,7 @@ def main(option='PEAK'):
                 ("PEAK", "REDSTACK")
             )
             plot_rose_graph(df,option)
-
+            
         
 
 
