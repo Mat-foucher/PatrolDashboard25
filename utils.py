@@ -31,7 +31,7 @@ def plot_indi1(df,option):
 
         fig.update_layout(template='plotly_dark', height=250)
 
-        st.plotly_chart(fig)
+        return fig
     except:
         st.error('Could not find weather station data - check BIGROUNDUP')
 
