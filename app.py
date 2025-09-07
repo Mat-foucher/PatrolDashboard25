@@ -53,9 +53,12 @@ def main(option='PEAK'):
         with col1:
             st.title("Snowbird Patrol Dashboard (UNOFFICIAL)")
             st.markdown(f"**Last Updated:** {df['DATETIME'].max()}")
-            plot_indi1(df,'PEAK')
-            plot_indi1(df,'REDSTACK')
+            col11, col12 = st.columns(1)
+            with col11:
+                plot_indi1(df,'PEAK')
             
+            with col12:
+                plot_indi1(df,'REDSTACK')
 
         with col2:
             # Selection Button:
