@@ -29,7 +29,7 @@ def plot_indi1(df,option):
             
         ))
 
-        fig.update_layout(template='plotly_dark', height=300)
+        fig.update_layout(template='plotly_dark')
 
         st.plotly_chart(fig)
     except:
