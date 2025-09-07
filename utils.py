@@ -60,7 +60,7 @@ def plot_rose_graph(df, option, heading=0):
     #     #subtitle= f"Most Recent: {windmask[option + '_WIND_DIR'].iloc[0]}" + " at " + f"{windmask[option + '_WIND'].iloc[0]}" + " mph"
     # )
     fig = px.bar_polar(
-        r = wind_summary.values,
+        r = np.round(wind_summary.values,2),
         theta= wind_summary.index,
         color= np.round(wind_summary.values,2),
         color_discrete_sequence= px.colors.sequential.Plasma_r,
