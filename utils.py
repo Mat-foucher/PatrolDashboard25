@@ -162,9 +162,9 @@ def plot_base_graph(df):
             legend=dict(
                 orientation="h",
                 yanchor="bottom",
-                y=0.0,
-                xanchor="center",
-                x=0.1
+                y=1.02,
+                xanchor="right",
+                x=1
             )
         )
 
