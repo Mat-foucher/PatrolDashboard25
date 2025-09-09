@@ -24,7 +24,7 @@ def plot_indi1(df,option):
             mode = "gauge+number+delta",
             delta = {'reference': df[option + '_WIND'].mean()},
             value = int(windmask[option + '_WIND'].iloc[0]),
-            title = {'text': option + " Wind Speed (mph)", 'font':{'size':15}},
+            title = {'text': 'Current ' + option + " Avg Wind Speed (mph)", 'font':{'size':15}},
             domain = {'x': [0, 1], 'y': [0, 1]},
             gauge = {'axis': { 'range':[None, df[option + '_WIND'].max()]}}
             
@@ -73,7 +73,7 @@ def plot_rose_graph(df, option):
             theta= wind_summary.index,
             color= np.round(wind_summary.values,2),
             color_discrete_sequence= px.colors.sequential.Plasma_r,
-            title= option + " Avg Wind (mph)",
+            title= option + " 24 hr Wind (mph)",
             subtitle= f"Most Recent: {windmask[option + '_WIND_DIR'].iloc[0]}" + " at " + f"{windmask[option + '_WIND'].iloc[0]}" + " mph"
         )
 
