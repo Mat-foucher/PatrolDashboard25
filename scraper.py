@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 from io import StringIO
 from datetime import datetime
+from utils import AISummary 
 
 def get_live_data():
 
@@ -103,6 +104,9 @@ def get_live_data():
         brdf.loc[i] = splitrow[1:]
     brdf.reset_index(drop=True,inplace=True)
 
+    # AI summary (for fun):
+    ai_summary = AISummary(brdf)
+
     # Datetime conversions
 
     # Sinners: 
@@ -119,4 +123,4 @@ def get_live_data():
     brdf.sort_values('BASE_TEMP')
 
     #brdf.to_csv('data/latest.csv', index=False)
-    return brdf 
+    return brdf, ai_summary
