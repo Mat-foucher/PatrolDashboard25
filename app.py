@@ -1,7 +1,7 @@
 # Dependencies:
 import streamlit as st
 from scraper import get_live_data
-from utils import format_time_column, plot_base_graph, plot_rose_graph, plot_indi1
+from utils import format_time_column, plot_base_graph, plot_rose_graph, plot_indi1, AISummary
 from gyro_component import gyro_heading
 from plotly.subplots import make_subplots
 import os
@@ -54,7 +54,8 @@ def main(option='PEAK'):
         with col1:
             st.title("Snowbird Patrol Dashboard (UNOFFICIAL)")
             st.markdown(f"**Last Updated:** {df['DATETIME'].max()}")
-            
+            st.markdown("## Summary of Past 24h:")
+            AISummary(df)
             
             
         with col2:

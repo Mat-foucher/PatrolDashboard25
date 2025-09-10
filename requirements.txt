@@ -6,5 +6,5 @@ requests
 beautifulsoup4
 plotly
 datetime
-
+openai
 
