@@ -172,6 +172,16 @@ def plot_base_graph(df):
             marker=dict(size=4)
         ))
 
+        fig.add_trace(go.Scatter(
+            x=df['DATETIME'],
+            y=df['PH1'],
+            mode='lines+markers',
+            name='Redstack Temp',
+            line=dict(color='orange'),
+            marker=dict(size=4)
+        ))
+
+
         fig.update_layout(
             title="Station Temp (F) Two Day Report",
             xaxis_title="Datetime",
@@ -185,9 +195,9 @@ def plot_base_graph(df):
             legend=dict(
                 orientation="h",
                 yanchor="bottom",
-                y=1.02,
-                xanchor="right",
-                x=1
+                y=0,
+                xanchor="center",
+                x=0.5
             )
         )
 
