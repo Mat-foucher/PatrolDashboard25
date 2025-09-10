@@ -1,10 +1,12 @@
 import requests
+import streamlit as st
 from bs4 import BeautifulSoup
 import pandas as pd
 from io import StringIO
 from datetime import datetime
 from utils import AISummary 
 
+@st.cache_data()
 def get_live_data():
 
     ################################################################
