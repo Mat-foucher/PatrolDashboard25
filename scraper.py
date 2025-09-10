@@ -6,7 +6,7 @@ from io import StringIO
 from datetime import datetime
 from utils import AISummary 
 
-@st.cache_data
+
 def get_live_data(dummy_buster = None):
     
     ################################################################
