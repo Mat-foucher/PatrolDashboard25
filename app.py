@@ -6,7 +6,7 @@ from gyro_component import gyro_heading
 from plotly.subplots import make_subplots
 import os
 
-@st.cache_data
+
 def main(option='PEAK'):
     # Call the gyro detection:
     gyro_heading()
