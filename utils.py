@@ -176,7 +176,7 @@ def plot_base_graph(df):
             x=df['DATETIME'],
             y=df['PH1_TEMP'],
             mode='lines+markers',
-            name='Redstack Temp',
+            name='Phone 1 Temp',
             line=dict(color='orange'),
             marker=dict(size=4)
         ))
