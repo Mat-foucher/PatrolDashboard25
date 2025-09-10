@@ -7,8 +7,8 @@ from datetime import datetime
 from utils import AISummary 
 
 @st.cache_data
-def get_live_data():
-
+def get_live_data(dummy_buster = None):
+    st.cache_data.clear()
     ################################################################
     # SCRAPING LOGIC 
     ################################################################
