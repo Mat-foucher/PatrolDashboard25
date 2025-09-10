@@ -174,7 +174,7 @@ def plot_base_graph(df):
 
         fig.add_trace(go.Scatter(
             x=df['DATETIME'],
-            y=df['PH1'],
+            y=df['PH1_TEMP'],
             mode='lines+markers',
             name='Redstack Temp',
             line=dict(color='orange'),
