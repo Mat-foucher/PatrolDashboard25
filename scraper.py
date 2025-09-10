@@ -8,7 +8,7 @@ from utils import AISummary
 
 @st.cache_data
 def get_live_data(dummy_buster = None):
-    st.cache_data.clear()
+    
     ################################################################
     # SCRAPING LOGIC 
     ################################################################
@@ -38,7 +38,7 @@ def get_live_data(dummy_buster = None):
 
 
     s_cols = sinnersdf.columns[0].split()
-    print(s_cols)
+    #print(s_cols)
 
     # New Dataframe for Sinners that has cleaned columns:
     sdf = pd.DataFrame(columns=s_cols)
@@ -90,7 +90,7 @@ def get_live_data(dummy_buster = None):
             else:
                 b_cols2[i] = b_cols[10] + "_" + b_cols2[i]
 
-    print(b_cols2, len(b_cols2))
+    #print(b_cols2, len(b_cols2))
 
     # Asssign the new column set to brdf:
     brdf = pd.DataFrame(columns=b_cols2)
@@ -101,7 +101,7 @@ def get_live_data(dummy_buster = None):
         #values = splitrow[12:13]
         date = str(current_year) + '-' + splitrow[0] + '-' + splitrow[1]
         splitrow[1] = date
-        print(splitrow[1:], len(splitrow[1:]))
+        #print(splitrow[1:], len(splitrow[1:]))
         
         brdf.loc[i] = splitrow[1:]
     brdf.reset_index(drop=True,inplace=True)
