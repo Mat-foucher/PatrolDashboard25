@@ -54,7 +54,7 @@ def main(option='PEAK'):
         with col1:
             st.title("Snowbird Patrol Dashboard (UNOFFICIAL)")
             st.markdown(f"**Last Updated:** {df['DATETIME'].max()}")
-            st.markdown("## Summary of Past 24h:")
+            st.markdown("**Summary of Past 24h:**")
             AISummary(df)
             
             
