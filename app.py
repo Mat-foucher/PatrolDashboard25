@@ -1,7 +1,7 @@
 # Dependencies:
 import streamlit as st
 from scraper import get_live_data
-from utils import format_time_column, plot_base_graph, plot_rose_graph, plot_indi1, AISummary
+from utils import format_time_column, plot_base_graph, plot_rose_graph, plot_indi1
 from gyro_component import gyro_heading
 from plotly.subplots import make_subplots
 import os
@@ -12,7 +12,7 @@ def main(option='PEAK'):
     gyro_heading()
 
     # Page UI:
-    df = get_live_data()
+    df, ai_summary = get_live_data()
     df = format_time_column(df)
 
     # Password Protection:
@@ -55,7 +55,7 @@ def main(option='PEAK'):
             st.title("Snowbird Patrol Dashboard (UNOFFICIAL)")
             st.markdown(f"**Last Updated:** {df['DATETIME'].max()}")
             st.markdown("**Summary of Past 24h:**")
-            AISummary(df)
+            st.write(ai_summary)
             
             
         with col2:

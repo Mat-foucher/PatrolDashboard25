@@ -25,7 +25,7 @@ def AISummary(df):
       temperature=0.7
     )
 
-    st.write(response.choices[0].message.content)
+    return response.choices[0].message.content
 
 
 def format_time_column(df):
