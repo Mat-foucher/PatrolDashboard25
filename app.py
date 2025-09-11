@@ -12,7 +12,7 @@ def main(option='PEAK'):
     gyro_heading()
 
     # Page UI:
-    df, ai_summary = get_live_data(dummy_buster="&")
+    df= get_live_data(dummy_buster="&")
     df = format_time_column(df)
 
     # Password Protection:
@@ -55,7 +55,7 @@ def main(option='PEAK'):
             st.title("Snowbird Patrol Dashboard (UNOFFICIAL)")
             st.markdown(f"**Last Updated:** {df['DATETIME'].max()}")
             st.markdown("**Summary of Past 24h:**")
-            st.write(ai_summary)
+            #st.write(ai_summary)
             
             
         with col2:

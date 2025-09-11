@@ -107,7 +107,7 @@ def get_live_data(dummy_buster = None):
     brdf.reset_index(drop=True,inplace=True)
 
     # AI summary (for fun):
-    ai_summary = AISummary(brdf)
+    #ai_summary = AISummary(brdf)
 
     # Datetime conversions
 
@@ -125,4 +125,4 @@ def get_live_data(dummy_buster = None):
     brdf.sort_values('BASE_TEMP')
 
     #brdf.to_csv('data/latest.csv', index=False)
-    return brdf, ai_summary
+    return brdf
