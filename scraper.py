@@ -126,30 +126,6 @@ def get_live_data(dummy_buster = None):
         b_cols2[max(duplicate_indices[i])] = b_cols2[max(duplicate_indices[i])] + '_DIR'
 
 
-    # # Put which station is what where it needs to go:
-    # for i in range(len(b_cols2)):
-    #     # Hardcoding Table column name assignment since they are not in a structured order:
-    #     if i >= 2 and i < 8:
-    #         b_cols2[i] = b_cols[0] + "_" + b_cols2[i]
-    #     if i >= 8 and i < 10:
-    #         b_cols2[i] = b_cols[2] + "_" + b_cols2[i]
-    #     if i >= 10 and i < 13:
-    #         b_cols2[i] = b_cols[4] + "_" + b_cols2[i]
-    #     if i >= 13 and i < 15:
-    #         b_cols2[i] = b_cols[6] + "_" + b_cols2[i]
-    #     if i >= 15 and i < 19:
-    #         if i == 18:
-    #             b_cols2[i] = b_cols[8] + "_" + b_cols2[i] + '_DIR'
-    #         else:
-    #             b_cols2[i] = b_cols[8] + "_" + b_cols2[i]
-    #     if i >= 19 and i < len(b_cols2):
-    #         if i == len(b_cols2)-1:
-    #             b_cols2[i] = b_cols[10] + "_" + b_cols2[i] + '_DIR'
-    #         else:
-    #             b_cols2[i] = b_cols[10] + "_" + b_cols2[i]
-
-    #print(b_cols2, len(b_cols2))
-
     # Asssign the new column set to brdf:
     brdf = pd.DataFrame(columns=b_cols2)
     # Assign the rows of sinnersdf to sdf by splitting by spaces into new columns:
@@ -165,7 +141,7 @@ def get_live_data(dummy_buster = None):
     brdf.reset_index(drop=True,inplace=True)
 
     # AI summary (for fun):
-    #ai_summary = AISummary(brdf)
+    # ai_summary = AISummary(brdf)
 
     # Datetime conversions
 

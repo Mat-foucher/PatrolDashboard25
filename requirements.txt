@@ -7,4 +7,6 @@ beautifulsoup4
 plotly
 datetime
 openai
+gspread 
+gspread_dataframe
 
