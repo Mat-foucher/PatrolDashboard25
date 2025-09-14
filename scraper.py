@@ -150,17 +150,17 @@ def get_live_data(dummy_buster = None):
     # Stuff for sending the data to google sheets
     #############################################
 
-    creds_path = '/etc/secrets/creds.json'
-    scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-    creds = ServiceAccountCredentials.from_json_keyfile_name(creds_path, scope)
-    client = gspread.authorize(creds)
+    # creds_path = '/etc/secrets/creds.json'
+    # scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+    # creds = ServiceAccountCredentials.from_json_keyfile_name(creds_path, scope)
+    # client = gspread.authorize(creds)
 
     # Fetch on cron run:
-    df = get_live_data()
+    # df = get_live_data()
 
-    sheet = client.open("snowbird_bigroundup_log").sheet1
+    # sheet = client.open("snowbird_bigroundup_log").sheet1
 
-    sheet.append_row(df.iloc[0].tolist())
+    # sheet.append_row(df.iloc[0].tolist())
 
 
     
