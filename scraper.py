@@ -111,7 +111,7 @@ def get_live_data(dummy_buster = None):
         else:
             #print(i, temp_indices[i], temp_indices[len(temp_indices) - 1])
             for j in range(temp_indices[i], len(b_cols2)):
-            b_cols2[j] = b_cols[i] + "_" + b_cols2[j]
+                b_cols2[j] = b_cols[i] + "_" + b_cols2[j]
 
     # add wind direction:
     element_counts = Counter(b_cols2)
