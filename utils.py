@@ -4,12 +4,12 @@ import plotly.graph_objects as go
 import plotly.express as px
 import streamlit as st 
 import os
-from openai import OpenAI
+# from openai import OpenAI
 from gyro_component import gyro_heading
 
 # Use ChatGPT to summarize the conditions from the past 24 hours:
 
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+#client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 def AISummary(df):
     df_string = df.to_string()
