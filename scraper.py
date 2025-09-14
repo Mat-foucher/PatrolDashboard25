@@ -147,9 +147,23 @@ def get_live_data(dummy_buster = None):
     # AI summary (for fun):
     # ai_summary = AISummary(brdf)
 
-    # Datetime conversions
+    #############################################
+    # Stuff for sending the data to google sheets
+    #############################################
 
-    # Sinners: 
+    creds_path = '/etc/secrets/creds.json'
+    scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+    creds = ServiceAccountCredentials.from_json_keyfile_name(creds_path, scope)
+    client = gspread.authorize(creds)
+
+    # Fetch on cron run:
+    df = get_live_data()
+
+    sheet = client.open("snowbird_bigroundup_log").sheet1
+
+    sheet.append_row(df.iloc[0].tolist())
+
+
     
 
     # Bigroundup: 
@@ -166,20 +180,6 @@ def get_live_data(dummy_buster = None):
     return brdf
 
 
-#############################################
-# Stuff for sending the data to google sheets
-#############################################
 
-creds_path = '/etc/secrets/creds.json'
-scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-creds = ServiceAccountCredentials.from_json_keyfile_name(creds_path, scope)
-client = gspread.authorize(creds)
-
-# Fetch on cron run:
-df = get_live_data()
-
-sheet = client.open("snowbird_bigroundup_log").sheet1
-
-sheet.append_row(df.iloc[0].tolist())
 
 
