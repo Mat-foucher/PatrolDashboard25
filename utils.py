@@ -11,21 +11,21 @@ from gyro_component import gyro_heading
 
 #client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
-def AISummary(df):
-    df_string = df.to_string()
-    context = f"""
-    You are a weather reporting assistant that will read the last 24 hours of recent weather data from various weather stations and givew a brief summary, in the 
-    style of AIARE condition reports. Be brief and to the point, with the midnset that you are giving insights to an on mountain ski patrol team that needs to make
-    quick decisions.The weather data for the last 24 hours is as follows: \n
-    Data: {df_string}"""
+# def AISummary(df):
+#     df_string = df.to_string()
+#     context = f"""
+#     You are a weather reporting assistant that will read the last 24 hours of recent weather data from various weather stations and givew a brief summary, in the 
+#     style of AIARE condition reports. Be brief and to the point, with the midnset that you are giving insights to an on mountain ski patrol team that needs to make
+#     quick decisions.The weather data for the last 24 hours is as follows: \n
+#     Data: {df_string}"""
 
-    response = client.chat.completions.create(
-      model="gpt-4o",
-      messages=[{"role": "user", "content": context}],
-      temperature=0.7
-    )
+#     response = client.chat.completions.create(
+#       model="gpt-4o",
+#       messages=[{"role": "user", "content": context}],
+#       temperature=0.7
+#     )
 
-    return response.choices[0].message.content
+#     return response.choices[0].message.content
 
 
 def format_time_column(df):
