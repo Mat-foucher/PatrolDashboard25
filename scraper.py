@@ -5,6 +5,7 @@ import pandas as pd
 from io import StringIO
 from datetime import datetime
 from utils import AISummary 
+from collections import Counter
 
 
 def get_live_data(dummy_buster = None):
@@ -120,6 +121,7 @@ def get_live_data(dummy_buster = None):
         if count > 1
     }
     #print(duplicate_indices)
+    # make wind and wind direction distinct: 
     for i in duplicate_indices:
         b_cols2[max(duplicate_indices[i])] = b_cols2[max(duplicate_indices[i])] + '_DIR'
 
