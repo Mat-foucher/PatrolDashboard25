@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 import pandas as pd
 from io import StringIO
 from datetime import datetime
-from utils import AISummary 
 from collections import Counter
 import os
 import json
