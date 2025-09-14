@@ -67,28 +67,84 @@ def get_live_data(dummy_buster = None):
 
     # New Dataframe for SBigroundup that has cleaned columns in the right order:
 
+    # Assume Date / time are always the first two: 
+    date_s = 'DATE'
+    time_s = 'TIME'
 
-    # Put which station is what where it needs to go:
-    for i in range(len(b_cols2)):
-        # Hardcoding Table column name assignment since they are not in a structured order:
-        if i >= 2 and i < 8:
-            b_cols2[i] = b_cols[0] + "_" + b_cols2[i]
-        if i >= 8 and i < 10:
-            b_cols2[i] = b_cols[2] + "_" + b_cols2[i]
-        if i >= 10 and i < 13:
-            b_cols2[i] = b_cols[4] + "_" + b_cols2[i]
-        if i >= 13 and i < 15:
-            b_cols2[i] = b_cols[6] + "_" + b_cols2[i]
-        if i >= 15 and i < 19:
-            if i == 18:
-                b_cols2[i] = b_cols[8] + "_" + b_cols2[i] + '_DIR'
-            else:
-                b_cols2[i] = b_cols[8] + "_" + b_cols2[i]
-        if i >= 19 and i < len(b_cols2):
-            if i == len(b_cols2)-1:
-                b_cols2[i] = b_cols[10] + "_" + b_cols2[i] + '_DIR'
-            else:
-                b_cols2[i] = b_cols[10] + "_" + b_cols2[i]
+    #date_time_good = False
+    date_i = b_cols2.index(date_s)
+    time_i = b_cols2.index(time_s)
+
+    # print(date_i, time_i)
+
+    if date_i < 2 and time_i < 2:
+        print('Date and time are at their proper location (https://snowbirdskipatrol.com/Wx/BIGROUNDUP.HTM)')
+    #date_time_good = True 
+
+    for i in b_cols:
+        try:
+            float(i)
+            print(i + " is a number")
+            b_cols.remove(i)
+        except ValueError:
+            print(i + " is not a number")
+            # take out the elevations (for now)
+
+
+    # identify where each weather station's TEMP is (always assume that the weather station has TEMP).
+    # this will fail if a weather station does not pipe it's TEMP (unlikely).
+
+    temp_indices = [i for i, item in enumerate(b_cols2) if item == 'TEMP']
+
+    #print(temp_indices)
+
+    # New clean column set up method:
+
+    for i in range(len(temp_indices)):
+        
+        if i < len(temp_indices)-1:
+            #print(i, temp_indices[i], temp_indices[i+1])
+            for j in range(temp_indices[i], temp_indices[i+1]):
+                b_cols2[j] = b_cols[i] + "_" + b_cols2[j]
+
+        else:
+            #print(i, temp_indices[i], temp_indices[len(temp_indices) - 1])
+            for j in range(temp_indices[i], len(b_cols2)):
+            b_cols2[j] = b_cols[i] + "_" + b_cols2[j]
+
+    # add wind direction:
+    element_counts = Counter(b_cols2)
+    duplicate_indices = {
+        element: [i for i, x in enumerate(b_cols2) if x == element]
+        for element, count in element_counts.items()
+        if count > 1
+    }
+    #print(duplicate_indices)
+    for i in duplicate_indices:
+        b_cols2[max(duplicate_indices[i])] = b_cols2[max(duplicate_indices[i])] + '_DIR'
+
+
+    # # Put which station is what where it needs to go:
+    # for i in range(len(b_cols2)):
+    #     # Hardcoding Table column name assignment since they are not in a structured order:
+    #     if i >= 2 and i < 8:
+    #         b_cols2[i] = b_cols[0] + "_" + b_cols2[i]
+    #     if i >= 8 and i < 10:
+    #         b_cols2[i] = b_cols[2] + "_" + b_cols2[i]
+    #     if i >= 10 and i < 13:
+    #         b_cols2[i] = b_cols[4] + "_" + b_cols2[i]
+    #     if i >= 13 and i < 15:
+    #         b_cols2[i] = b_cols[6] + "_" + b_cols2[i]
+    #     if i >= 15 and i < 19:
+    #         if i == 18:
+    #             b_cols2[i] = b_cols[8] + "_" + b_cols2[i] + '_DIR'
+    #         else:
+    #             b_cols2[i] = b_cols[8] + "_" + b_cols2[i]
+    #     if i >= 19 and i < len(b_cols2):
+    #         if i == len(b_cols2)-1:
+    #             b_cols2[i] = b_cols[10] + "_" + b_cols2[i] + '_DIR'
+    #         else:
+    #             b_cols2[i] = b_cols[10] + "_" + b_cols2[i]
 
     #print(b_cols2, len(b_cols2))
 
