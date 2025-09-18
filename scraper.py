@@ -139,8 +139,8 @@ def get_live_data(dummy_buster = None):
         date = str(current_year) + '-' + splitrow[0] + '-' + splitrow[1]
         splitrow[1] = date
         #print(splitrow[1:], len(splitrow[1:]))
-        
-        brdf.loc[i] = splitrow[1:]
+        if len(splitrow)-1 == len(b_cols2):
+            brdf.loc[i] = splitrow[1:]
     brdf.reset_index(drop=True,inplace=True)
 
     # AI summary (for fun):
