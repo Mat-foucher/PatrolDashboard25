@@ -12,7 +12,7 @@ def main(option='PEAK'):
     gyro_heading()
 
     # Page UI:
-    df= get_live_data(dummy_buster="&")
+    df = get_live_data(dummy_buster="&")
     df = format_time_column(df)
 
     # Password Protection:
