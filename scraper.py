@@ -177,10 +177,10 @@ def get_live_data(dummy_buster = None):
     max_peak_wind = brdf[brdf['DATETIME'] == brdf['DATETIME'].max()]['PEAK_WIND']
     max_redstack_wind = brdf[brdf['DATETIME'] == brdf['DATETIME'].max()]['REDSTACK_WIND']
     
-    if max_peak_wind > 20:
-        send_wind_alert(f"ALERT: PEAK WINDS OVER {max_peak_wind} MPH") 
-    if max_redstack_wind > 20:
-        send_wind_alert(f"ALERT: REDSTACK WINDS OVER {max_redstack_wind} MPH") 
+    if max_peak_wind > 1:
+        send_wind_alert(f"[TEST] ALERT: PEAK WINDS OVER {max_peak_wind} MPH") 
+    if max_redstack_wind > 1:
+        send_wind_alert(f"[TEST] ALERT: REDSTACK WINDS OVER {max_redstack_wind} MPH") 
 
     # Bigroundup: 
 
