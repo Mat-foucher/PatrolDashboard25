@@ -12,7 +12,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 from gspread_dataframe import set_with_dataframe
 
 def send_wind_alert(message):
-    webhook_url = "https://powdr.webhook.office.com/webhookb2/42e6e1c8-2d91-4af3-881d-648245be15f7@5ed1ad7b-c5e7-48f3-aa87-306ee04cfb2a/IncomingWebhook/029973ab51d04529894cbb67943a902a/5655c08c-00c5-49e5-b952-480845f74e12/V2ez-pltywtz8E89B9kqlaFX-FG6l02aEwd_RNioFsTeI1"
+    webhook_url = os.getenv('TEAMS_WEBHOOK')
     payload = {
         "text": message
     }
