@@ -11,6 +11,14 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from gspread_dataframe import set_with_dataframe
 
+def send_wind_alert(message):
+    webhook_url = "https://powdr.webhook.office.com/webhookb2/42e6e1c8-2d91-4af3-881d-648245be15f7@5ed1ad7b-c5e7-48f3-aa87-306ee04cfb2a/IncomingWebhook/029973ab51d04529894cbb67943a902a/5655c08c-00c5-49e5-b952-480845f74e12/V2ez-pltywtz8E89B9kqlaFX-FG6l02aEwd_RNioFsTeI1"
+    payload = {
+        "text": message
+    }
+    requests.post(webhook_url, json=payload)
+    
+
 def get_live_data(dummy_buster = None):
     
     ################################################################
@@ -163,7 +171,16 @@ def get_live_data(dummy_buster = None):
     # sheet.append_row(df.iloc[0].tolist())
 
 
+    # Wind Alerts to teams: 
+
+    # Check to see if wind at any station is high (>20 mph) :
+    max_peak_wind = brdf[brdf['DATETIME'] == brdf['DATETIME'].max()]['PEAK_WIND']
+    max_redstack_wind = brdf[brdf['DATETIME'] == brdf['DATETIME'].max()]['REDSTACK_WIND']
     
+    if max_peak_wind > 20:
+        send_wind_alert(f"ALERT: PEAK WINDS OVER {max_peak_wind} MPH") 
+    if max_redstack_wind > 20:
+        send_wind_alert(f"ALERT: REDSTACK WINDS OVER {max_redstack_wind} MPH") 
 
     # Bigroundup: 
 
