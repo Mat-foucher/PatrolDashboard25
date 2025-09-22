@@ -184,14 +184,14 @@ def get_live_data(dummy_buster = None):
     # Wind Alerts to teams: 
 
     # Check to see if wind at any station is high (>20 mph) :
-    # latest_df = brdf[brdf['DATETIME'] == brdf['DATETIME'].max()]
-    # max_peak_wind = latest_df['PEAK_WIND'].astype(int)
-    # max_redstack_wind = latest_df['REDSTACK_WIND'].astype(int)
+    latest_df = brdf[brdf['DATETIME'] == brdf['DATETIME'].max()]
+    max_peak_wind = int(latest_df['PEAK_WIND'].iloc[0])
+    max_redstack_wind = int(latest_df['REDSTACK_WIND'].iloc[0])
     
-    # if max_peak_wind > 1:
-    #     send_wind_alert(f"[TEST] ALERT: PEAK WINDS OVER {max_peak_wind} MPH") 
-    # if max_redstack_wind > 1:
-    #     send_wind_alert(f"[TEST] ALERT: REDSTACK WINDS OVER {max_redstack_wind} MPH") 
+    if max_peak_wind > 1:
+        send_wind_alert(f"[TEST] ALERT: PEAK WINDS OVER {max_peak_wind} MPH") 
+    if max_redstack_wind > 1:
+        send_wind_alert(f"[TEST] ALERT: REDSTACK WINDS OVER {max_redstack_wind} MPH") 
 
     #brdf.to_csv('data/latest.csv', index=False)
     return brdf
