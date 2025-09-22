@@ -170,6 +170,16 @@ def get_live_data(dummy_buster = None):
 
     # sheet.append_row(df.iloc[0].tolist())
 
+    # Bigroundup: 
+
+    brdf['TIME'] = brdf['TIME'].astype(str).str.zfill(4)
+    #brdf['TIME'] = pd.to_datetime(brdf['TIME'],format='%H:%M').dt.time 
+    brdf.sort_values('TIME')
+    brdf['DATETIME_STR'] = brdf['DATE'].astype(str) + ' ' + brdf['TIME'].astype(str)
+    brdf['DATETIME'] = pd.to_datetime(brdf['DATETIME_STR'],format='%Y-%m-%d %H%M', errors='coerce')
+    brdf['BASE_TEMP'] = brdf['BASE_TEMP'].astype(int)
+    brdf.sort_values('BASE_TEMP')
+
 
     # Wind Alerts to teams: 
 
@@ -181,16 +191,6 @@ def get_live_data(dummy_buster = None):
         send_wind_alert(f"[TEST] ALERT: PEAK WINDS OVER {max_peak_wind} MPH") 
     if max_redstack_wind > 1:
         send_wind_alert(f"[TEST] ALERT: REDSTACK WINDS OVER {max_redstack_wind} MPH") 
-
-    # Bigroundup: 
-
-    brdf['TIME'] = brdf['TIME'].astype(str).str.zfill(4)
-    #brdf['TIME'] = pd.to_datetime(brdf['TIME'],format='%H:%M').dt.time 
-    brdf.sort_values('TIME')
-    brdf['DATETIME_STR'] = brdf['DATE'].astype(str) + ' ' + brdf['TIME'].astype(str)
-    brdf['DATETIME'] = pd.to_datetime(brdf['DATETIME_STR'],format='%Y-%m-%d %H%M', errors='coerce')
-    brdf['BASE_TEMP'] = brdf['BASE_TEMP'].astype(int)
-    brdf.sort_values('BASE_TEMP')
 
     #brdf.to_csv('data/latest.csv', index=False)
     return brdf
