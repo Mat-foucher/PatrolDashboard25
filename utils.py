@@ -47,7 +47,7 @@ def plot_indi1(df,option):
             mode = "gauge+number+delta",
             delta = {'reference': df[option + '_WIND'].mean()},
             value = int(windmask[option + '_WIND'].iloc[0]),
-            title = {'text': 'Current ' + option + " Avg Wind Speed (mph)", 'font':{'size':10}},
+            title = {'text': 'Last ' + option + " Avg Wind Speed (mph)", 'font':{'size':10}},
             domain = {'x': [0, 1], 'y': [0, 1]},
             gauge = {'axis': { 'range':[None, df[option + '_WIND'].max()]}}
             
