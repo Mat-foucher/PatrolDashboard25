@@ -59,7 +59,38 @@ def plot_indi1(df,option):
     except:
         st.error('Could not find weather station data - check BIGROUNDUP')
 
-
+def plotbar(bsdf):
+    bigsnowfig = go.Figure(
+        data= [
+        go.Bar(
+            x=bsdf['DATE'], 
+            y=bsdf['BASE_HS'],
+            text=bsdf['BASE_HS'],
+            name = 'BASE_HS'
+            ),
+        go.Bar(
+            x=bsdf['DATE'], 
+            y=bsdf['SIN_HS'],
+            text=bsdf['SIN_HS'],
+            name='SIN_HS'
+            ),
+        go.Bar(
+            x=bsdf['DATE'],
+            y=bsdf['PH1_HS'],
+            text=bsdf['PH1_HS'],
+            name='PH1_HS'
+        ),
+        go.Bar(
+            x=bsdf['DATE'],
+            y=bsdf['G2_HS'],
+            text=bsdf['G2_HS'],
+            name='G2_HS'
+        )
+        ]
+    )
+    #bigsnowfig.update_layout(barmode='stack')
+    bigsnowfig.update_layout(title_text='Snow Height by Station (in)')
+    bigsnowfig.show()
 
 
 
