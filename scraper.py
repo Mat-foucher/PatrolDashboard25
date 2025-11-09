@@ -271,7 +271,7 @@ def get_live_data(dummy_buster = None):
         send_wind_alert(f"[TEST] ALERT: REDSTACK WINDS OVER {max_redstack_wind} MPH") 
 
     #brdf.to_csv('data/latest.csv', index=False)
-    return brdf
+    return brdf, bsdf
 
 
 

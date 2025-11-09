@@ -1,7 +1,7 @@
 # Dependencies:
 import streamlit as st
 from scraper import get_live_data
-from utils import format_time_column, plot_base_graph, plot_rose_graph, plot_indi1
+from utils import format_time_column, plot_base_graph, plot_rose_graph, plot_indi1, plotbar
 from gyro_component import gyro_heading
 from plotly.subplots import make_subplots
 import os
@@ -12,7 +12,7 @@ def main(option='PEAK'):
     gyro_heading()
 
     # Page UI:
-    df = get_live_data(dummy_buster="&")
+    df, bsdf = get_live_data(dummy_buster="&")
     df = format_time_column(df)
 
     # Password Protection:
@@ -76,6 +76,7 @@ def main(option='PEAK'):
 
         with c:
             plot_base_graph(df)
+            plotbar(bsdf)
 
 
 
