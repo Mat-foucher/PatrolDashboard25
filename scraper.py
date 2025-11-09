@@ -27,18 +27,23 @@ def get_live_data(dummy_buster = None):
 
     snowbird_sinners_url = "https://snowbirdskipatrol.com/Wx/SIN.HTM"
     snowbird_bigroundup_url = "https://snowbirdskipatrol.com/Wx/BIGROUNDUP.HTM"
+    snowbird_bigsnow = "https://snowbirdskipatrol.com/Wx/BIGSNOW3.HTM"
     response = requests.get(snowbird_sinners_url)
     response2 = requests.get(snowbird_bigroundup_url)
+    response3 = requests.get(snowbird_bigsnow)
     soup = BeautifulSoup(response.text, 'html.parser')
     soup2 = BeautifulSoup(response2.text, 'html.parser')
+    soup3 = BeautifulSoup(response3.text, 'html.parser')
     #print(str(soup).split('<pre>')[1].split('</pre>')[0],str(soup2).split('<pre>')[1].split('</pre>')[0])
 
     # Table String Lengths:
     sinners_tablestring = str(soup).split('<pre>')[1].split('</pre>')[0]
     bigroundup_tablestring = str(soup2).split('<pre>')[1].split('</pre>')[0]
+    bigsnow_tablestring = str(soup3).split('<pre>')[1].split('</pre>')[0]
 
     sinnersdf = pd.read_fwf(StringIO(sinners_tablestring))
     bigroundupdf = pd.read_fwf(StringIO(bigroundup_tablestring))
+    bigsnowdf = pd.read_fwf(StringIO(bigsnow_tablestring))
 
     current_year = datetime.now().year
 
@@ -75,7 +80,11 @@ def get_live_data(dummy_buster = None):
     b_cols = bigroundupdf.columns[0].split()
     b_cols2 = bigroundupdf.values.tolist()[0]
 
+    s_cols = bigsnowdf.columns[0].split()
+    s_cols2 = bigsnowdf.values.tolist()[0]
+
     b_cols2 = b_cols2[0].split()
+    s_cols2 = s_cols2[0].split()
 
     # New Dataframe for SBigroundup that has cleaned columns in the right order:
 
@@ -154,6 +163,53 @@ def get_live_data(dummy_buster = None):
     # AI summary (for fun):
     # ai_summary = AISummary(brdf)
 
+    ####################
+    ## big snow table ##
+    #################### 
+    # Assume Date / time are always the first two:
+    date_s = 'DATE'
+    time_s = 'TIME'
+
+    #date_time_good = False
+    date_i = s_cols2.index(date_s)
+    time_i = s_cols2.index(time_s)
+
+    # print(date_i, time_i)
+
+    if date_i < 2 and time_i < 2:
+        print('Date and time are at their proper location (https://snowbirdskipatrol.com/Wx/BIGSNOW3.HTM)')
+        date_time_good = True
+
+    # Squash s_cols & s_cols2 together:
+    for i in range(len(s_cols2)):
+        if i>1:
+            s_cols2[i] = s_cols[i-2] + '_' + s_cols2[i]
+
+    # bsdf = big snow dataframe:
+
+    bsdf = pd.DataFrame(columns=s_cols2)
+
+    ## Assign the row values of bigsnow to the bsdf column (bsdf has the right column titles):
+
+    for i in range(3,len(bigsnowdf)):
+        splitrow = str(bigsnowdf.iloc[i][0]).split()
+
+        #values = splitrow[12:13]
+        date = str(current_year) + '-' + splitrow[0] + '-' + splitrow[1]
+        splitrow[1] = date
+
+
+
+        if len(splitrow)-1 == len(s_cols2):
+            bsdf.loc[i] = splitrow[1:]
+
+
+    bsdf.reset_index(drop=True,inplace=True)
+    # print(s_cols)
+    # print(s_cols2)
+    # bsdf.head(100)
+
+
     #############################################
     # Stuff for sending the data to google sheets
     #############################################
@@ -179,6 +235,27 @@ def get_live_data(dummy_buster = None):
     brdf['DATETIME'] = pd.to_datetime(brdf['DATETIME_STR'],format='%Y-%m-%d %H%M', errors='coerce')
     brdf['BASE_TEMP'] = brdf['BASE_TEMP'].astype(int)
     brdf.sort_values('BASE_TEMP')
+
+    # BigSnow: 
+    bsdf['TIME'] = bsdf['TIME'].astype(str).str.zfill(4)
+    #brdf['TIME'] = pd.to_datetime(brdf['TIME'],format='%H:%M').dt.time
+    bsdf.sort_values('TIME')
+    bsdf['DATETIME_STR'] = bsdf['DATE'].astype(str) + ' ' + bsdf['TIME'].astype(str)
+    bsdf['DATETIME'] = pd.to_datetime(bsdf['DATETIME_STR'],format='%Y-%m-%d %H%M', errors='coerce')
+    bsdf['BASE_HS'] = bsdf['BASE_HS'].astype(float)
+    bsdf['SIN_HS'] = bsdf['SIN_HS'].astype(float)
+    bsdf['PH1_HS'] = bsdf['PH1_HS'].astype(float)
+    bsdf['G2_HS'] = bsdf['G2_HS'].astype(float)
+    bsdf.sort_values('DATE')
+
+    # BigSnow - Anomaly Detection for heights (basic):
+
+    for i in range(len(s_cols2)):
+        for j in range(len(bsdf[s_cols2[i]])):
+            #print(bsdf[s_cols2[i]].loc[j])
+            if isinstance(bsdf[s_cols2[i]].loc[j], float):
+                if bsdf[s_cols2[i]].loc[j] < 0:
+                    bsdf[s_cols2[i]].loc[j] = 0.0
 
 
     # Wind Alerts to teams: 
