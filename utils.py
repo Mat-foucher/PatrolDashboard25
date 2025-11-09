@@ -90,7 +90,7 @@ def plotbar(bsdf):
     )
     #bigsnowfig.update_layout(barmode='stack')
     bigsnowfig.update_layout(title_text='Snow Height by Station (in)')
-    bigsnowfig.show()
+    st.plotly_chart(bigsnowfig)
 
 
 
