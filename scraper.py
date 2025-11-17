@@ -266,9 +266,9 @@ def get_live_data(dummy_buster = None):
     max_redstack_wind = int(latest_df['REDSTACK_WIND'].iloc[0])
     
     if max_peak_wind > 20:
-        send_wind_alert(f"ALERT: PEAK WINDS OVER 20 MPH [LAST RECORDED: {max_peak_wind}] @Mathieu Foucher") 
+        send_wind_alert(f"ALERT: PEAK WINDS OVER 20 MPH [LAST RECORDED: {max_peak_wind}]") 
     if max_redstack_wind > 20:
-        send_wind_alert(f"ALERT: REDSTACK WINDS OVER 20 MPH [LAST RECORDED: {max_redstack_wind}] @Mathieu Foucher") 
+        send_wind_alert(f"ALERT: REDSTACK WINDS OVER 20 MPH [LAST RECORDED: {max_redstack_wind}]") 
 
     if max_peak_wind > 40:
         send_wind_alert(f"DANGER: PEAK WINDS OVER 40 MPH [LAST RECORDED: {max_peak_wind}]. STAY CLEAR OF RIDGELINES. @Mathieu Foucher") 
