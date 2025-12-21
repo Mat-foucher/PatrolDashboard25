@@ -195,13 +195,13 @@ def get_live_data(dummy_buster = None):
         splitrow = str(bigsnowdf.iloc[i][0]).split()
 
         #values = splitrow[12:13]
-        date = str(current_year) + '-' + splitrow[0] + '-' + splitrow[1]
-        splitrow[1] = date
-
-
-
-        if len(splitrow)-1 == len(s_cols2):
-            bsdf.loc[i] = splitrow[1:]
+        if len(splitrow)-1 == 6:
+            try:
+                date = str(current_year) + '-' + splitrow[0] + '-' + splitrow[1]
+                splitrow[1] = date
+                bsdf.loc[i] = splitrow[1:]
+            except: 
+                print("list index out of range in bigsnow")
 
 
     bsdf.reset_index(drop=True,inplace=True)
