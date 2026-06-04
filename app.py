@@ -76,6 +76,8 @@ def main(option='PEAK'):
 
         with c:
             plot_base_graph(df)
+            url = "https://github.com/Mat-foucher/PatrolDashboard25"
+            st.markdown("Want to see the git repo or clone it? Click Here! [link](%s)" % url)
 
 
 
