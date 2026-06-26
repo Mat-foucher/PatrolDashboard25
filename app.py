@@ -20,7 +20,7 @@ def main(option='PEAK'):
     if not st.session_state.authenticated:
         
         with st.form("Login Form"):
-            pass_input = st.text_input("Enter Password:", type="password")
+            pass_input = st.text_input("Enter Password (Try Pressing 'Submit' Again if it does not go through):", type="password")
             submitted = st.form_submit_button('Submit')
 
             if submitted:
