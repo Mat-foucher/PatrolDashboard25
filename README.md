@@ -2,6 +2,8 @@
 
 Link for Render: https://patroldashboard25.onrender.com/
 
+Password protected - request password by messaging me on github or emailing me at mathieubfoucher@gmail.com 
+
 ## SOP: Deploying & Maintaining the Snowbird Patrol Dashboard
 
 ## Overview
